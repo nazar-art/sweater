@@ -2,7 +2,7 @@ package net.lelyak.controller;
 
 import lombok.AllArgsConstructor;
 import net.lelyak.domain.Message;
-import net.lelyak.repository.MessageRepository;
+import net.lelyak.repository.MessageRepo;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,33 +16,32 @@ import java.util.Map;
  */
 @Controller
 @AllArgsConstructor
-public class GreetingController {
+public class MainController {
 
-    private final MessageRepository messageRepository;
+    private final MessageRepo messageRepo;
 
-    @GetMapping("/greeting")
-    public String greeting(
-            @RequestParam(required = false, defaultValue = "World") String name,
-            Map<String, Object> model
-    ) {
-
-        model.put("name", name);
+    @GetMapping("/")
+    public String greeting(Map<String, Object> model) {
         return "greeting";
     }
 
-    @GetMapping
+    @GetMapping("/main")
     public String main(Map<String, Object> model) {
-        model.put("messages", messageRepository.findAll());
+        Iterable<Message> messages = messageRepo.findAll();
+
+        model.put("messages", messages);
+
         return "main";
     }
 
-    @PostMapping
-    public String addMessage(@RequestParam String text, @RequestParam String tag, Map<String, Object> model) {
-
+    @PostMapping("/main")
+    public String add(@RequestParam String text, @RequestParam String tag, Map<String, Object> model) {
         Message message = Message.builder().text(text).tag(tag).build();
-        messageRepository.save(message);
+        messageRepo.save(message);
 
-        model.put("messages", messageRepository.findAll());
+        Iterable<Message> messages = messageRepo.findAll();
+        model.put("messages", messages);
+
         return "main";
     }
 
@@ -51,14 +50,14 @@ public class GreetingController {
         Iterable<Message> messages;
 
         if (StringUtils.isNotBlank(filter)) {
-            messages = messageRepository.findByTag(filter);
+            messages = messageRepo.findByTag(filter);
         } else {
-            messages = messageRepository.findAll();
+            messages = messageRepo.findAll();
         }
 
         model.put("messages", messages);
+
         return "main";
     }
-
 
 }

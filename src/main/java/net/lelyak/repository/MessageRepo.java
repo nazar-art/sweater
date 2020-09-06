@@ -8,6 +8,6 @@ import java.util.List;
 /**
  * @author Nazar Lelyak.
  */
-public interface MessageRepository extends CrudRepository<Message, Integer> {
+public interface MessageRepo extends CrudRepository<Message, Integer> {
     List<Message> findByTag(String tag);
 }

@@ -1,7 +1,44 @@
+#server:
+#  port: 8082
+
+
 spring:
+  application:
+    name: sweater
+  mustache:
+    expose-request-attributes: true
+
+  # ===============================
+  # = DB
+  # ===============================
   datasource:
     url: jdbc:postgresql://localhost/sweater
     username: postgres
     password: root
   jpa:
+#    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
     generate-ddl: true
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+# ===============================
+# = Actuator
+# ===============================
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      enabled: true
+      show-details: ALWAYS
+
+logging:
+  level:
+    net.lelyak: debug
