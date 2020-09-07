@@ -14,7 +14,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost/sweater
     username: postgres
-    password: root
+    password: secret
   jpa:
 #    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
     generate-ddl: true

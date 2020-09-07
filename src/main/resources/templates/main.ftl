@@ -4,20 +4,23 @@
 <@c.page>
     <div>
         <@l.logout />
+        <#if isAdmin>
+            <span><a href="/user">User list</a></span>
+        </#if>
     </div>
 
     <div>
         <form method="post">
-            <input type="text" name="text" placeholder="Введите сообщение" />
+            <input type="text" name="text" placeholder="Введите сообщение"/>
             <input type="text" name="tag" placeholder="Тэг">
-            <input type="hidden" name="_csrf" value="${_csrf.token}" />
+            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
             <button type="submit">Добавить</button>
         </form>
     </div>
 
     <div>Список сообщений</div>
     <form method="get" action="/main">
-        <input type="text" name="filter" value="${filter}">
+        <input type="text" name="filter" value="${filter!""}">
         <button type="submit">Найти</button>
     </form>
 
