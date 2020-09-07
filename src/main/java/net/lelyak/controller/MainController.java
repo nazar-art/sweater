@@ -2,6 +2,7 @@ package net.lelyak.controller;
 
 import lombok.AllArgsConstructor;
 import net.lelyak.domain.Message;
+import net.lelyak.domain.Role;
 import net.lelyak.domain.User;
 import net.lelyak.repository.MessageRepo;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -23,12 +24,15 @@ public class MainController {
     private final MessageRepo messageRepo;
 
     @GetMapping("/")
-    public String greeting(Map<String, Object> model) {
+    public String greeting() {
         return "greeting";
     }
 
     @GetMapping("/main")
-    public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model) {
+    public String main(
+            @AuthenticationPrincipal User user,
+            @RequestParam(required = false, defaultValue = "") String filter,
+            Model model) {
         Iterable<Message> messages;
 
         if (filter != null && !filter.isEmpty()) {
@@ -39,6 +43,7 @@ public class MainController {
 
         model.addAttribute("messages", messages);
         model.addAttribute("filter", filter);
+        model.addAttribute("isAdmin", user.getRoles().contains(Role.ADMIN));
 
         return "main";
     }
@@ -61,20 +66,5 @@ public class MainController {
 
         return "main";
     }
-
-    /*@PostMapping("/filter")
-    public String filter(@RequestParam String filter, Map<String, Object> model) {
-        Iterable<Message> messages;
-
-        if (StringUtils.isNotBlank(filter)) {
-            messages = messageRepo.findByTag(filter);
-        } else {
-            messages = messageRepo.findAll();
-        }
-
-        model.put("messages", messages);
-
-        return "main";
-    }*/
 
 }
