@@ -5,7 +5,7 @@
 spring:
   application:
     name: sweater
-  mustache:
+  freemarker:
     expose-request-attributes: true
 
   # ===============================

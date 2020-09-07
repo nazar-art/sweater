@@ -1,11 +1,10 @@
-# Sweater
+# Sweater - some analog for Twitter
 
 ## Instructions
 ### DB
-create DB 
+
+create DB at Postgres:
 
     sweater 
     
-at Postgres
-
-Also, update configs for connection to DB at `application.yml`.    
+Also, update credentials to DB at `application.yml`.    
