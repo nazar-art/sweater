@@ -7,6 +7,10 @@ spring:
     name: sweater
   freemarker:
     expose-request-attributes: true
+  servlet:
+    multipart:
+      max-file-size: 500MB
+      max-request-size: 500MB
 
   # ===============================
   # = DB
@@ -16,7 +20,6 @@ spring:
     username: postgres
     password: secret
   jpa:
-#    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
     generate-ddl: true
     properties:
       hibernate:
@@ -42,3 +45,7 @@ management:
 logging:
   level:
     net.lelyak: debug
+
+
+upload.path: /home/nazar/Documents/sweater-uploads
+
