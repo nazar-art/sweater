@@ -27,6 +27,10 @@
         </ul>
 
         <div class="navbar-text mr-3">${name}</div>
-        <@l.logout />
+        <#if name != "unknown">
+            <@l.logout />
+        <#else>
+            <a href="http://localhost:8080/login" class="btn btn-primary" role="button" aria-pressed="true">Login</a>
+        </#if>
     </div>
 </nav>

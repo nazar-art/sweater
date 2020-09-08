@@ -12,6 +12,19 @@ spring:
     multipart:
       max-file-size: 500MB
       max-request-size: 500MB
+  mail:
+    host: smtp.gmail.com
+    username: uw@dru.su
+    password: 12345678
+    port: 465
+    protocol: smtps
+    properties:
+      mail:
+        smtp:
+          auth: true
+        starttls:
+          enable: true
+mail.debug: true
 
   # ===============================
   # = DB
@@ -46,7 +59,6 @@ management:
 logging:
   level:
     net.lelyak: debug
-
 
 upload.path: /home/nazar/Documents/sweater-uploads
 
