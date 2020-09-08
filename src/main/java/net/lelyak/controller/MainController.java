@@ -2,7 +2,6 @@ package net.lelyak.controller;
 
 import lombok.RequiredArgsConstructor;
 import net.lelyak.domain.Message;
-import net.lelyak.domain.Role;
 import net.lelyak.domain.User;
 import net.lelyak.repository.MessageRepo;
 import org.springframework.beans.factory.annotation.Value;

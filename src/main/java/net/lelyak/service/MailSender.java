@@ -1,6 +1,6 @@
 package net.lelyak.service;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -10,13 +10,14 @@ import org.springframework.stereotype.Service;
  * @author Nazar Lelyak.
  */
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class MailSender {
+
+    private final JavaMailSender mailSender;
 
     @Value("${spring.mail.username}")
     private String username;
 
-    private final JavaMailSender mailSender;
 
     public void send(String emailTo, String subject, String message) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();

@@ -1,8 +1,6 @@
 package net.lelyak.config;
 
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,7 +12,6 @@ import java.util.Properties;
  * @author Nazar Lelyak.
  */
 @Configuration
-@AllArgsConstructor
 public class MailConfig {
 
     @Value("${spring.mail.host}")
@@ -43,7 +40,7 @@ public class MailConfig {
 
 
     @Bean
-    public JavaMailSender mailSender() {
+    public JavaMailSender getMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
         mailSender.setHost(host);

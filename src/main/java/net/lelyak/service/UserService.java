@@ -42,9 +42,12 @@ public class UserService implements UserDetailsService {
         userRepo.save(user);
 
         if (StringUtils.isNotEmpty(user.getEmail())) {
-            String message = String.format("Hello, %s!\n" +
-                    "Welcome to Sweater. Please visit next link: http://localhost/activate/%s",
-                    user.getUsername(), user.getActivationCode());
+            String message = String.format(
+                    "Hello, %s!\n" +
+                            "Welcome to Sweater.\n" +
+                            "Please visit next link: http://localhost:8080/activate/%s",
+                    user.getUsername(),
+                    user.getActivationCode());
 
             mailSender.send(user.getEmail(), "Activation Code", message);
         }

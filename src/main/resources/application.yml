@@ -3,6 +3,8 @@
 #  error:
 #    path: /error
 
+mail.debug: true
+
 spring:
   application:
     name: sweater
@@ -14,17 +16,16 @@ spring:
       max-request-size: 500MB
   mail:
     host: smtp.gmail.com
-    username: uw@dru.su
-    password: 12345678
+    username: ${gmail-account-name}
+    password: ${gmail-account-pass}
     port: 465
     protocol: smtps
     properties:
       mail:
         smtp:
           auth: true
-        starttls:
-          enable: true
-mail.debug: true
+          starttls:
+            enable: true
 
   # ===============================
   # = DB
@@ -32,7 +33,7 @@ mail.debug: true
   datasource:
     url: jdbc:postgresql://localhost/sweater
     username: postgres
-    password: root
+    password: secret
   jpa:
     generate-ddl: true
     properties:
