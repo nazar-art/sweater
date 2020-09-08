@@ -60,7 +60,7 @@ public class MainController {
             @RequestParam String text,
             @RequestParam String tag, Map<String, Object> model,
             @RequestParam("file") MultipartFile file
-            ) throws IOException {
+    ) throws IOException {
         Message message = Message.builder()
                 .text(text)
                 .tag(tag)

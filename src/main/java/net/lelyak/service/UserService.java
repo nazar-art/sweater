@@ -41,7 +41,7 @@ public class UserService implements UserDetailsService {
 
         userRepo.save(user);
 
-        if (StringUtils.isNotEmpty(user.getEmail())) {
+        if (StringUtils.isNotBlank(user.getEmail())) {
             String message = String.format(
                     "Hello, %s!\n" +
                             "Welcome to Sweater.\n" +
