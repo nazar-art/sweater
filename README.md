@@ -1,4 +1,4 @@
-# Sweater - some analog for Twitter
+# Sweater - analog to Twitter based on Spring Boot
 
 ## Instructions
 ### DB
