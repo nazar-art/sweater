@@ -36,7 +36,10 @@ spring:
     username: postgres
     password: root
   jpa:
-    generate-ddl: true
+    generate-ddl: false
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
     properties:
       hibernate:
         jdbc:

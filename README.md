@@ -19,3 +19,7 @@ You need to set:
 Allow access to less safe application for this account as well:
 
     https://myaccount.google.com/lesssecureapps
+    
+Also, temp mail could be used:
+
+    https://temp-mail.org/    
