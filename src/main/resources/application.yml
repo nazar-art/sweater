@@ -4,6 +4,7 @@
 #    path: /error
 
 mail.debug: true
+upload.path: /home/nazar/Documents/sweater-uploads
 
 spring:
   application:
@@ -33,7 +34,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost/sweater
     username: postgres
-    password: secret
+    password: root
   jpa:
     generate-ddl: true
     properties:
@@ -61,5 +62,4 @@ logging:
   level:
     net.lelyak: debug
 
-upload.path: /home/nazar/Documents/sweater-uploads
 
