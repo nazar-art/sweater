@@ -3,7 +3,6 @@ package net.lelyak.controller;
 import lombok.AllArgsConstructor;
 import net.lelyak.domain.User;
 import net.lelyak.service.UserService;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,13 +28,10 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String addUser(@Valid User user,
-                          BindingResult bindingResult,
-                          Model model) {
-
-        if (StringUtils.isNotEmpty(user.getPassword())
-                && !StringUtils.equals(user.getPassword(), user.getPassword2())) {
-            model.addAttribute("passwordError", "Passwords are not equals");
+    public String addUser(@Valid User user, BindingResult bindingResult, Model model) {
+        if (user.getPassword() != null && !user.getPassword().equals(user.getPassword2())) {
+            model.addAttribute("passwordError", "Passwords are different!");
+            return "registration";
         }
 
         if (bindingResult.hasErrors()) {

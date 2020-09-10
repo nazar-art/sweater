@@ -20,10 +20,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
-//    private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    @Bean(name = "passwordEncoder")
-    public PasswordEncoder getPasswordEncoder() {
+    @Bean
+    public static PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder(8);
     }
 
@@ -45,6 +45,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService)
-                .passwordEncoder(getPasswordEncoder());
+                .passwordEncoder(passwordEncoder);
     }
 }

@@ -5,7 +5,18 @@ import lombok.Singular;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.Collection;
@@ -18,9 +29,18 @@ import java.util.Set;
 @Entity
 @Table(name = "usr")
 public class User implements UserDetails {
+
     @Id
+    /*@SequenceGenerator(
+            name = "user_id_seq",
+            sequenceName = "user_id_seq",
+            allocationSize = 1)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "user_id_seq")
+    @Column(name = "id", updatable = false)*/
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @NotBlank(message = "Username can not be empty")
     private String username;
@@ -29,7 +49,7 @@ public class User implements UserDetails {
     private String password;
 
     @Transient
-    @NotBlank(message = "Password confirmation can not be empty")
+//    @NotBlank(message = "Password confirmation can not be empty")
     private String password2;
     private boolean active;
 
