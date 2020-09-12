@@ -22,11 +22,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
 
-    @Bean
-    public static PasswordEncoder getPasswordEncoder() {
-        return new BCryptPasswordEncoder(8);
-    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

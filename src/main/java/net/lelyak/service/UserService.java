@@ -5,6 +5,7 @@ import net.lelyak.domain.Role;
 import net.lelyak.domain.User;
 import net.lelyak.repository.UserRepo;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -29,6 +30,9 @@ public class UserService implements UserDetailsService {
     private final UserRepo userRepo;
     private final MailSender mailSender;
     private final PasswordEncoder passwordEncoder;
+
+    @Value("${hostname}")
+    private String hostname;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -65,8 +69,9 @@ public class UserService implements UserDetailsService {
             String message = String.format(
                     "Hello, %s!\n" +
                             "Welcome to Sweater.\n" +
-                            "Please visit next link: http://localhost:8080/activate/%s",
+                            "Please visit next link: http://%s/activate/%s",
                     user.getUsername(),
+                    hostname,
                     user.getActivationCode());
 
             mailSender.send(user.getEmail(), "Activation Code", message);
