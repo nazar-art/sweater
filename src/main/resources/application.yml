@@ -46,6 +46,8 @@ spring:
           lob:
             non_contextual_creation: true
 
+recaptcha.secret: 6LcrW8sZAAAAAD-yuVGW4HaROZ9rhtR7sZImm_XJ
+
 # ===============================
 # = Actuator
 # ===============================
