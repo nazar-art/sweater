@@ -3,15 +3,15 @@
 ## Instructions
 ### DB
 
-create DB at Postgres:
+create `sweater` DB at Postgres with
 
-    sweater 
+    sudo -u postgres psql
     
 Also, update credentials to DB at `application.yml`.    
 
 ---
 
-You need to set:
+You need to set Gmail account info for Application:
 
     gmail-account-name
     gmail-account-pass
