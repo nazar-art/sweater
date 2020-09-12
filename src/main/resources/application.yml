@@ -34,7 +34,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost/sweater
     username: postgres
-    password: secret
+    password: root
   jpa:
     generate-ddl: false
     show-sql: false

@@ -31,14 +31,6 @@ import java.util.Set;
 public class User implements UserDetails {
 
     @Id
-    /*@SequenceGenerator(
-            name = "user_id_seq",
-            sequenceName = "user_id_seq",
-            allocationSize = 1)
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_id_seq")
-    @Column(name = "id", updatable = false)*/
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -47,10 +39,6 @@ public class User implements UserDetails {
 
     @NotBlank(message = "Password can not be empty")
     private String password;
-
-    @Transient
-//    @NotBlank(message = "Password confirmation can not be empty")
-    private String password2;
     private boolean active;
 
     @Email(message = "Email is not correct")
