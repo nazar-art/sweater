@@ -5,6 +5,7 @@
 
 mail.debug: true
 upload.path: /home/nazar/Documents/sweater-uploads
+recaptcha.secret: ${recaptcha-secret}
 
 spring:
   application:
@@ -27,6 +28,10 @@ spring:
           auth: true
           starttls:
             enable: true
+  session:
+    jdbc:
+      initialize-schema: always
+      table-name: SPRING_SESSION
 
   # ===============================
   # = DB
@@ -46,7 +51,6 @@ spring:
           lob:
             non_contextual_creation: true
 
-recaptcha.secret: 6LcrW8sZAAAAAD-yuVGW4HaROZ9rhtR7sZImm_XJ
 
 # ===============================
 # = Actuator
