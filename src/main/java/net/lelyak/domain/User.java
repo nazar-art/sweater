@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Set;
 
@@ -28,17 +29,11 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "usr")
-public class User implements UserDetails {
+public class User implements UserDetails, Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    /*@SequenceGenerator(
-            name = "user_id_seq",
-            sequenceName = "user_id_seq",
-            allocationSize = 1)
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_id_seq")
-    @Column(name = "id", updatable = false)*/
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -47,10 +42,6 @@ public class User implements UserDetails {
 
     @NotBlank(message = "Password can not be empty")
     private String password;
-
-    @Transient
-//    @NotBlank(message = "Password confirmation can not be empty")
-    private String password2;
     private boolean active;
 
     @Email(message = "Email is not correct")

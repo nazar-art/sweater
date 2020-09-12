@@ -34,7 +34,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost/sweater
     username: postgres
-    password: secret
+    password: root
   jpa:
     generate-ddl: false
     show-sql: false
@@ -45,6 +45,8 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
+
+recaptcha.secret: 6LcrW8sZAAAAAD-yuVGW4HaROZ9rhtR7sZImm_XJ
 
 # ===============================
 # = Actuator
