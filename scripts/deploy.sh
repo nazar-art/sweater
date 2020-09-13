@@ -5,7 +5,7 @@ mvn clean package
 echo 'Copy files...'
 
 scp -i ~/.ssh/id_rsa \
-    target/sweater-1.0-SNAPSHOT.jar \
+    target/sweater-1.0.jar \
     dru@192.168.0.107:/home/dru/
 
 echo 'Restart server...'
