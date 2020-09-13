@@ -40,7 +40,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost/sweater
     username: postgres
-    password: root
+    password: secret
   jpa:
     generate-ddl: false
     show-sql: false
