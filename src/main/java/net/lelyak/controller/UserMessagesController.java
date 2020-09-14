@@ -1,6 +1,7 @@
 package net.lelyak.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.lelyak.domain.Message;
 import net.lelyak.domain.User;
 import net.lelyak.repository.MessageRepo;
@@ -8,9 +9,11 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,22 +23,24 @@ import java.util.Set;
 /**
  * @author Nazar Lelyak.
  */
+@Slf4j
 @Service
 @RequiredArgsConstructor
+@RequestMapping("/user-messages/{user}")
 public class UserMessagesController {
 
     private final MessageRepo messageRepo;
     private final MainController mainController;
 
-    @GetMapping("/user-messages/{user}")
+    @GetMapping
     public String userMessages(
             @AuthenticationPrincipal User currentUser,
             @PathVariable User user,
             Model model,
             @RequestParam(required = false) Message message
     ) {
-        Set<Message> messages = user.getMessages();
 
+        Set<Message> messages = user.getMessages();
         model.addAttribute("messages", messages);
         model.addAttribute("message", message);
         model.addAttribute("isCurrentUser", currentUser.equals(user));
@@ -43,17 +48,19 @@ public class UserMessagesController {
         return "userMessages";
     }
 
-    @PostMapping("/user-messages/{user}")
+    @PostMapping
     public String updateMessage(
             @AuthenticationPrincipal User currentUser,
             @PathVariable Long user,
             @RequestParam("id") Message message,
+            Model model,
+            BindingResult bindingResult,
             @RequestParam("text") String text,
             @RequestParam("tag") String tag,
             @RequestParam("file") MultipartFile file
     ) throws IOException {
 
-        if (message.getAuthor().equals(currentUser)) {
+        if (message != null && currentUser.equals(message.getAuthor())) {
             if (StringUtils.isNotBlank(text)) {
                 message.setText(text);
             }
@@ -65,6 +72,12 @@ public class UserMessagesController {
             mainController.saveFile(message, file);
 
             messageRepo.save(message);
+        } else {
+            Message newMessage = Message.builder()
+                    .text(text)
+                    .tag(tag)
+                    .build();
+            mainController.add(currentUser, newMessage, bindingResult, model, file);
         }
 
         return String.format("redirect:/user-messages/%s", user);
