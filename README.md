@@ -23,3 +23,7 @@ Allow access to less safe application for this account as well:
 Also, temp mail could be used:
 
     https://temp-mail.org/    
+    
+---
+
+[Recaptcha link](https://www.google.com/recaptcha/admin/site/432757547#list)    

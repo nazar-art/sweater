@@ -31,7 +31,7 @@ public class UserService implements UserDetailsService {
     private final MailSender mailSender;
     private final PasswordEncoder passwordEncoder;
 
-    @Value("${hostname}")
+    @Value("${myhostname}")
     private String hostname;
 
     @Override

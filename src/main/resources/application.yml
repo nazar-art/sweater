@@ -3,7 +3,7 @@
 #  error:
 #    path: /error
 
-hostname: localhost:8080
+myhostname: 18.194.243.47
 mail.debug: false
 upload.path: /home/nazar/Documents/sweater-uploads
 recaptcha.secret: ${recaptcha-secret}
@@ -40,7 +40,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost/sweater
     username: postgres
-    password: secret
+    password: root
   jpa:
     generate-ddl: false
     show-sql: false

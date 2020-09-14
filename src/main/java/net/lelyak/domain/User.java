@@ -1,22 +1,12 @@
 package net.lelyak.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Singular;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
@@ -29,6 +19,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "usr")
+@EqualsAndHashCode(of = {"id"})
 public class User implements UserDetails, Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,6 +45,9 @@ public class User implements UserDetails, Serializable {
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     private Set<Role> roles;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Message> messages;
 
     public boolean isAdmin() {
         return roles.contains(Role.ADMIN);
