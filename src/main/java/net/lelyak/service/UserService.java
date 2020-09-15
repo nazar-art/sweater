@@ -138,7 +138,13 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println("766c1a98-6296-44da-acd4-289b739346d6".length());
+    public void subscribe(User currentUser, User user) {
+        user.getSubscribers().add(currentUser);
+        userRepo.save(user);
+    }
+
+    public void unsubscribe(User currentUser, User user) {
+        user.getSubscribers().remove(currentUser);
+        userRepo.save(user);
     }
 }
