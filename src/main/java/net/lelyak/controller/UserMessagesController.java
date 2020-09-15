@@ -9,7 +9,6 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,8 +58,6 @@ public class UserMessagesController {
             @AuthenticationPrincipal User currentUser,
             @PathVariable Long user,
             @RequestParam("id") Message message,
-            Model model,
-            BindingResult bindingResult,
             @RequestParam("text") String text,
             @RequestParam("tag") String tag,
             @RequestParam("file") MultipartFile file
@@ -78,12 +75,6 @@ public class UserMessagesController {
             mainController.saveFile(message, file);
 
             messageRepo.save(message);
-        } else {
-            Message newMessage = Message.builder()
-                    .text(text)
-                    .tag(tag)
-                    .build();
-            mainController.add(currentUser, newMessage, bindingResult, model, file);
         }
 
         return String.format("redirect:/user-messages/%s", user);
