@@ -3,9 +3,9 @@
 <@c.page>
     <h3>${userChannel.username}</h3>
 
-    <#if !isCurrentUser??>
-        <#if isSubscriber??>
-            <a class="btn btn-info" href="/user/unsubscribe/${userChannel.id}">UnSubscribe</a>
+    <#if !isCurrentUser>
+        <#if isSubscriber>
+            <a class="btn btn-info" href="/user/unsubscribe/${userChannel.id}">Unsubscribe</a>
         <#else>
             <a class="btn btn-info" href="/user/subscribe/${userChannel.id}">Subscribe</a>
         </#if>
@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    <#if isCurrentUser??>
+    <#if isCurrentUser>
         <#include "parts/messageEdit.ftl" />
     </#if>
 
