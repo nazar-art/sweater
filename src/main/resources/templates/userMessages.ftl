@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    <#if isCurrentUser??>
+    <#if isCurrentUser>
         <#include "parts/messageEdit.ftl" />
     </#if>
 
