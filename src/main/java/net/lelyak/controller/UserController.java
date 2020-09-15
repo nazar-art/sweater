@@ -49,7 +49,7 @@ public class UserController {
         return "redirect:/user";
     }
 
-    @GetMapping("profile")
+    @GetMapping("/profile")
     public String getProfile(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("username", user.getUsername());
         model.addAttribute("email", user.getEmail());
@@ -57,7 +57,7 @@ public class UserController {
         return "profile";
     }
 
-    @PostMapping("profile")
+    @PostMapping("/profile")
     public String updateProfile(
             @AuthenticationPrincipal User user,
             @RequestParam String password,
@@ -71,7 +71,7 @@ public class UserController {
     /**
      * Subscribers / Subscriptions:
      */
-    @GetMapping("subscribe/{user}")
+    @GetMapping("/subscribe/{user}")
     public String subscribe(
             @AuthenticationPrincipal User currentUser,
             @PathVariable User user
@@ -81,7 +81,7 @@ public class UserController {
         return "redirect:/user-messages/" + user.getId();
     }
 
-    @GetMapping("unsubscribe/{user}")
+    @GetMapping("/unsubscribe/{user}")
     public String unsubscribe(
             @AuthenticationPrincipal User currentUser,
             @PathVariable User user
@@ -91,7 +91,7 @@ public class UserController {
         return "redirect:/user-messages/" + user.getId();
     }
 
-    @GetMapping("{type}/{user}/list")
+    @GetMapping("/{type}/{user}/list")
     public String userList(
             Model model,
             @PathVariable User user,

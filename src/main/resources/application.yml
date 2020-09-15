@@ -5,7 +5,7 @@
 
 myhostname: 18.194.243.47
 mail.debug: false
-upload.path: /home/nazar/Documents/sweater-uploads
+upload.path: /home/ec2-user/uploads
 recaptcha.secret: ${recaptcha-secret}
 
 spring:

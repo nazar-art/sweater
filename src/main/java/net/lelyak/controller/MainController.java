@@ -39,9 +39,9 @@ public class MainController {
 
     @GetMapping("/main")
     public String main(
-            @AuthenticationPrincipal User user,
-            @RequestParam(required = false, defaultValue = "") String filter,
-            Model model) {
+            Model model,
+            @RequestParam(required = false, defaultValue = "") String filter
+    ) {
         Iterable<Message> messages;
 
         if (filter != null && !filter.isEmpty()) {
