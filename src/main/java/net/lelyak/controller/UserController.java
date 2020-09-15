@@ -76,7 +76,7 @@ public class UserController {
             @AuthenticationPrincipal User currentUser,
             @PathVariable User user
     ) {
-        userSevice.subscribe(currentUser, user);
+        userService.subscribe(currentUser, user);
 
         return "redirect:/user-messages/" + user.getId();
     }
@@ -86,7 +86,7 @@ public class UserController {
             @AuthenticationPrincipal User currentUser,
             @PathVariable User user
     ) {
-        userSevice.unsubscribe(currentUser, user);
+        userService.unsubscribe(currentUser, user);
 
         return "redirect:/user-messages/" + user.getId();
     }
