@@ -121,7 +121,6 @@
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
-                <version>6.5.5</version>
             </plugin>
         </plugins>
     </build>
