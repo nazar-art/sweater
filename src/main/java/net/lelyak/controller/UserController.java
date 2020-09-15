@@ -76,7 +76,7 @@ public class UserController {
             @AuthenticationPrincipal User currentUser,
             @PathVariable User user
     ) {
-        userService.subscribe(currentUser, user);
+        userSevice.subscribe(currentUser, user);
 
         return "redirect:/user-messages/" + user.getId();
     }
@@ -86,7 +86,7 @@ public class UserController {
             @AuthenticationPrincipal User currentUser,
             @PathVariable User user
     ) {
-        userService.unsubscribe(currentUser, user);
+        userSevice.unsubscribe(currentUser, user);
 
         return "redirect:/user-messages/" + user.getId();
     }
@@ -94,11 +94,11 @@ public class UserController {
     @GetMapping("{type}/{user}/list")
     public String userList(
             Model model,
-            @PathVariable String type,
-            @PathVariable User user
+            @PathVariable User user,
+            @PathVariable String type
     ) {
-        model.addAttribute("type", type);
         model.addAttribute("userChannel", user);
+        model.addAttribute("type", type);
 
         if ("subscriptions".equals(type)) {
             model.addAttribute("users", user.getSubscriptions());
