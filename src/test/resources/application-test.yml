@@ -3,10 +3,9 @@
 #  error:
 #    path: /error
 
-myhostname: 18.194.243.47
-mail.debug: false
-upload.path: /home/ec2-user/uploads
-#recaptcha.secret: ${recaptcha-secret}
+myhostname: localhost:8080
+mail.debug: true
+upload.path: /home/nazar/Documents/sweater-uploads
 recaptcha.secret: 6LduQVoUAAAAACpkNtp9c5WWgyGENzIxZqF9SbZL
 
 spring:
@@ -20,9 +19,7 @@ spring:
       max-request-size: 500MB
   mail:
     host: smtp.gmail.com
-#    username: ${gmail-account-name}
-#    password: ${gmail-account-pass}
-    username: uw@dru.su
+    username: test@gmail.com
     password: 12345678
     port: 465
     protocol: smtps
@@ -41,7 +38,7 @@ spring:
   # = DB
   # ===============================
   datasource:
-    url: jdbc:postgresql://localhost/sweater
+    url: jdbc:postgresql://localhost/sweater_test
     username: postgres
     password: root
   jpa:

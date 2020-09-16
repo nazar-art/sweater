@@ -1,9 +1,6 @@
 package net.lelyak.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Entity;
@@ -19,9 +16,11 @@ import java.io.Serializable;
 /**
  * @author Nazar Lelyak.
  */
-@Data
+@Getter
+@Setter
 @Entity
 @Builder
+@ToString(of = {"id", "text", "tag"})
 @NoArgsConstructor
 @AllArgsConstructor
 public class Message implements Serializable {
