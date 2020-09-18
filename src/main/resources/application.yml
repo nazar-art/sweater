@@ -5,8 +5,9 @@
 
 myhostname: 18.194.243.47
 mail.debug: false
-upload.path: /home/nazar/Documents/sweater-uploads
-recaptcha.secret: ${recaptcha-secret}
+upload.path: /home/ec2-user/uploads
+#recaptcha.secret: ${recaptcha-secret}
+recaptcha.secret: 6LduQVoUAAAAACpkNtp9c5WWgyGENzIxZqF9SbZL
 
 spring:
   application:
@@ -19,8 +20,10 @@ spring:
       max-request-size: 500MB
   mail:
     host: smtp.gmail.com
-    username: ${gmail-account-name}
-    password: ${gmail-account-pass}
+#    username: ${gmail-account-name}
+#    password: ${gmail-account-pass}
+    username: uw@dru.su
+    password: 12345678
     port: 465
     protocol: smtps
     properties:

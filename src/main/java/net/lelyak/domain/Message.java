@@ -1,27 +1,23 @@
 package net.lelyak.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import net.lelyak.domain.util.MessageHelper;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Nazar Lelyak.
  */
-@Data
+@Getter
+@Setter
 @Entity
 @Builder
+@ToString(of = {"id", "text", "tag"})
 @NoArgsConstructor
 @AllArgsConstructor
 public class Message implements Serializable {
@@ -35,6 +31,7 @@ public class Message implements Serializable {
     @NotBlank(message = "Please fill the message")
     @Length(max = 2048, message = "Message too long (more than 2KB)")
     private String text;
+
     @Length(max = 255, message = "Message too long (more than 255)")
     private String tag;
 
@@ -44,8 +41,16 @@ public class Message implements Serializable {
 
     private String filename;
 
+    @ManyToMany
+    @JoinTable(
+            name = "message_likes",
+            joinColumns = {@JoinColumn(name = "message_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")}
+    )
+    private Set<User> likes = new HashSet<>();
+
     public String getAuthorName() {
-        return author != null ? author.getUsername() : "<none>";
+        return MessageHelper.getAuthorName(author);
     }
 
 }

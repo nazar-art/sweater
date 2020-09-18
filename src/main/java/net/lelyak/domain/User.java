@@ -1,8 +1,6 @@
 package net.lelyak.domain;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Singular;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -17,10 +15,12 @@ import java.util.Set;
 /**
  * @author Nazar Lelyak.
  */
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "usr")
 @EqualsAndHashCode(of = {"id"})
+@ToString(of = {"id", "username", "active", "email"})
 public class User implements UserDetails, Serializable {
 
     private static final long serialVersionUID = 1L;
