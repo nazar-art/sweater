@@ -5,7 +5,7 @@
 
 myhostname: localhost:8080
 mail.debug: true
-upload.path: /home/nazar/Documents/sweater-uploads
+upload.path: C:/Users/nazar.lelyak/Documents/sweater-uploads
 recaptcha.secret: ${recaptcha-secret}
 
 spring:

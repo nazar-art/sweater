@@ -1,6 +1,6 @@
 package net.lelyak;
 
-import net.lelyak.controller.MainController;
+import net.lelyak.controller.MessageController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,11 +33,11 @@ public class LoginTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private MainController mainController;
+    private MessageController messageController;
 
     @Test
     public void test() {
-        assertThat(mainController).isNotNull();
+        assertThat(messageController).isNotNull();
     }
 
     @Test
