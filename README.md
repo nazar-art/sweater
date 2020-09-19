@@ -17,7 +17,7 @@ You need to set Gmail account info for Application & url to created recaptcha (s
     gmail-account-pass
     recaptcha-secret
     
-Set program parameter:
+Set program parameter for working with `dev` profile:
 
     --spring.profiles.active=dev    
     
