@@ -17,6 +17,10 @@ You need to set Gmail account info for Application & url to created recaptcha (s
     gmail-account-pass
     recaptcha-secret
     
+Set program parameter:
+
+    --spring.profiles.active=dev    
+    
 Allow access to less safe application for this account as well:
 
     https://myaccount.google.com/lesssecureapps
