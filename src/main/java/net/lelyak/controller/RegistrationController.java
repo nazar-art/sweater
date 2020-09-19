@@ -1,13 +1,11 @@
 package net.lelyak.controller;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import net.lelyak.domain.User;
 import net.lelyak.domain.dto.CaptchaResponseDto;
 import net.lelyak.service.UserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,7 +26,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class RegistrationController {
 
-    private final static String CAPTCHA_URL =  "https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s";
+    private final static String CAPTCHA_URL = "https://www.google.com/recaptcha/api/siteverify?secret=%s&response=%s";
 
     private final UserService userService;
     private final RestTemplate restTemplate;
@@ -44,7 +42,7 @@ public class RegistrationController {
     @PostMapping("/registration")
     public String addUser(
             @RequestParam("password2") String passwordConfirm,
-            @RequestParam("g-recaptcha-response") String captchaResponse,
+            @RequestParam(value = "g-recaptcha-response", required = false) String captchaResponse,
             @Valid User user,
             BindingResult bindingResult,
             Model model
