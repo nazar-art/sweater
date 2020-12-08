@@ -6,6 +6,7 @@ import net.lelyak.domain.User;
 import net.lelyak.domain.dto.MessageDto;
 import net.lelyak.repository.MessageRepo;
 import net.lelyak.service.MessageService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -53,8 +54,13 @@ public class MessageController {
     ) {
         Page<MessageDto> page = messageService.messageList(pageable, filter, user);
 
+        if (StringUtils.isNotBlank(filter)) {
+            model.addAttribute("url", String.format("/main?filter=%s", filter));
+        } else {
+            model.addAttribute("url", "/main");
+        }
+
         model.addAttribute("page", page);
-        model.addAttribute("url", "/main");
         model.addAttribute("filter", filter);
 
         return "main";
