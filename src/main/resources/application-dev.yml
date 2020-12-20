@@ -1,7 +1,7 @@
-#server:
-#  port: 8082
-#  error:
-#    path: /error
+server:
+  port: 8080
+  error:
+    path: /error
 
 myhostname: localhost:8080
 mail.debug: true

@@ -1,5 +1,11 @@
 # Sweater - analog to Twitter based on Spring Boot
 
+## Main info
+### Branches
+
+- master - configured for Windows
+- development - configured for Linux Mint
+
 ## Instructions
 ### DB
 
