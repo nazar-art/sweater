@@ -1,6 +1,7 @@
 <#include "security.ftl">
 
 <#macro login path isRegisterForm>
+
     <form action="${path}" method="post">
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">User Name :</label>
@@ -67,6 +68,7 @@
                 </#if>
             </div>
         </#if>
+
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
 
         <#if !isRegisterForm><a href="/registration">Add new user</a></#if>
