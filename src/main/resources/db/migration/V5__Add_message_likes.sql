@@ -1,6 +1,6 @@
-create table message_likes
+CREATE TABLE message_likes
 (
-    user_id int4 not null references usr,
-    message_id int4 not null references message,
-    primary key (user_id, message_id)
+    user_id INT4 NOT NULL REFERENCES usr,
+    message_id INT4 NOT NULL REFERENCES message,
+    PRIMARY KEY (user_id, message_id)
 )
